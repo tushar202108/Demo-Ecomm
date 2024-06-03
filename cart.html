@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section id="cartcontainer">
+        <div class="maincontainer">
+            <div class="cartheader">
+                <h1>Shopping Cart</h1>
+            </div>
+            <div class="cart-content">
+                <div class="cartsingleImg">
+                    <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/n/r/t/m-men-slim-fit-cut-away-collar-casual-shirt-sanbros-original-imagxuq8ymrjbyvp.jpeg?q=70&crop=false"
+                        alt="T-shirt" id="cartmainImg">
+
+                    <div class="cartsmallImg-group">
+                        <div class="cartsmallImg">
+                            <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/y/k/e/m-st10-vebnor-original-imagsfcfdf3masf5.jpeg?q=70&crop=false"
+                                alt="Shirt" class="small-img" width="80%">
+                        </div>
+                        <div class="cartsmallImg">
+                            <img class="small-img" src="https://m.media-amazon.com/images/I/81rN7jSUgHS._AC_SY550_.jpg"
+                                alt="Shirt" width="100%">
+                        </div>
+                        <div class="cartsmallImg">
+                            <img class="small-img" src="https://m.media-amazon.com/images/I/61kxBAr5coL._AC_SY550_.jpg"
+                                alt="Shirt" width="100%">
+                        </div>
+                        <div class="cartsmallImg">
+                            <img class="small-img"
+                                src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/n/r/t/m-men-slim-fit-cut-away-collar-casual-shirt-sanbros-original-imagxuq8ymrjbyvp.jpeg?q=70&crop=false"
+                                alt="Shirt" width="100%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cartdetail">
+                    <p id="Productname">Men Regular Fit Printed Casual Shirt</p>
+                    <p id="stock">In Stock</p>
+                    <p id="price"><i>&#8377;</i>449</p>
+                    <p id="quantity">Quantity :
+                        <select id="quantity-select">
+                            <option value="1">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10+</option>
+                        </select>
+                    </p>
+                    <p id="bill"></p>
+                    <button type="button" id="buy">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        
+        var mainImg = document.getElementById('cartmainImg');
+        var smallImg = document.getElementsByClassName('small-img');
+        smallImg[0].onclick = function () {
+            mainImg.src = smallImg[0].src;
+        }
+        smallImg[1].onclick = function () {
+            mainImg.src = smallImg[1].src;
+        }
+        smallImg[2].onclick = function () {
+            mainImg.src = smallImg[2].src;
+        }
+        smallImg[3].onclick = function () {
+            mainImg.src = smallImg[3].src;
+        }
+        let bill = document.getElementById('bill');
+        let quantitySelect = document.getElementById("quantity-select");
+
+        quantitySelect.addEventListener("change", function () {
+            let price = document.getElementById('price').textContent;
+            let quantity = parseInt(quantitySelect.value);
+            let pricePerItem =parseInt(price);
+            let totalBill = quantity * pricePerItem;
+            bill.innerHTML = `${pricePerItem} X ${quantity} = ₹ ${totalBill}`;
+            localStorage.setItem("Bill", totalBill);
+
+        });
+        let buy = document.getElementById("buy");
+        buy.addEventListener('click', () => {
+            if (localStorage.getItem("Full Name")) {
+                location.reload();
+                window.location.href = "./detail.html";
+
+            }
+            else {
+                location.reload();
+                window.location.href = "./register.html"
+            }
+        })
+        let cartmainImg = document.getElementById('cartmainImg');
+        const items = localStorage.getItem('cart');
+        if (items == "seccard") {
+            cartmainImg.src = "https://rukminim2.flixcart.com/image/416/416/xif0q/shirt/j/e/0/xl-stripe-d003-fitoda-fashion-original-imahy4v7dgjgcrxb.jpeg?q=70&crop=false";
+            smallImg[3].src = "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/10397845/2020/1/6/47098bf8-5863-442e-9ead-c10aa792567c1578311817031-Roadster-Men-Shirts-6441578311815056-1.jpg";
+            smallImg[0].src = "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/9357631/2019/11/21/a2e767d4-42d7-483b-b564-b8caf2e129541574328369266-Roadster-Men-Shirts-6351574328366591-1.jpg";
+            smallImg[1].src = "https://rukminim2.flixcart.com/image/416/416/xif0q/shirt/j/e/0/xl-stripe-d003-fitoda-fashion-original-imahy4v7dgjgcrxb.jpeg?q=70&crop=false";
+            smallImg[2].src = "https://m.media-amazon.com/images/I/61kxBAr5coL._AC_SY550_.jpg";
+            price.innerHTML = 469;
+        }
+       if(items == "thirdcard")
+       {
+        cartmainImg.src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/v/s/2/m-st10-vebnor-original-imagqtmyexcu2gar.jpeg?q=70&crop=false";
+        smallImg[0].src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/y/k/e/m-st10-vebnor-original-imagsfcfdf3masf5.jpeg?q=70&crop=false";
+        smallImg[1].src="https://m.media-amazon.com/images/I/81rN7jSUgHS._AC_SY550_.jpg";
+        smallImg[2].src="https://rukminim2.flixcart.com/image/832/832/xif0q/t-shirt/9/s/h/xl-urm006011p-urgear-original-imagzgfdadsev3cd.jpeg?q=70&crop=false";
+        smallImg[3].src="https://rukminim2.flixcart.com/image/832/832/xif0q/shirt/v/s/2/m-st10-vebnor-original-imagqtmyexcu2gar.jpeg?q=70&crop=false";
+        price.innerHTML = 279 ;
+
+       }
+    </script>
+</body>
+
+</html>
